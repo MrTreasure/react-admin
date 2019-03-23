@@ -14,3 +14,10 @@ export const GET_USER_INFO = async () => {
     department: '大前端'
   }
 }
+
+export const LOGIN = async (form: {username: string, password: string}) => {
+  await sleep(2000)
+  return  {
+    
+  }
+}
