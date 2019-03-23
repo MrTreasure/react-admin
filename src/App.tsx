@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import styles from './App.module.scss';
-import { Button } from 'antd'
-
+import UserInfo from '@/components/UserInfo'
 class App extends Component {
   render() {
     return (
@@ -12,7 +11,7 @@ class App extends Component {
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
-            <Button>Learn React</Button>
+          <UserInfo age={2}/>
         </header>
       </div>
     );
