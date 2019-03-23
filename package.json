@@ -8,11 +8,16 @@
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.3",
     "antd": "^3.15.1",
+    "axios": "^0.18.0",
+    "immer": "^2.1.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "redux": "^4.0.1",
+    "redux-promise": "^0.6.0",
+    "redux-promise-middleware": "^6.1.0",
     "typescript": "3.3.4000"
   },
   "scripts": {
@@ -31,6 +36,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/react-redux": "^7.0.5",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.12",
     "node-sass": "^4.11.0",
