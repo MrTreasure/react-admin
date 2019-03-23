@@ -7,6 +7,7 @@
     "@types/node": "11.11.5",
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.3",
+    "antd": "^3.15.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
@@ -15,10 +16,10 @@
     "typescript": "3.3.4000"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,6 +31,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "node-sass": "^4.11.0"
+    "babel-plugin-import": "^1.11.0",
+    "customize-cra": "^0.2.12",
+    "node-sass": "^4.11.0",
+    "react-app-rewired": "^2.1.1"
   }
 }
