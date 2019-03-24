@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux'
 import UserInfoReducer, { IUserInfo } from './UserInfo'
+import { combineReducers } from 'redux'
 
 export interface IRootState {
   user: IUserInfo
