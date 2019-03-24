@@ -1,6 +1,10 @@
+import LoginForm from './LoginForm'
+import logo from '@/assets/image/logo.svg'
 import React, { Component, Dispatch } from 'react'
+import { Card } from 'antd'
 import { connect } from 'react-redux'
-import { login as loginAction, getUserInfo as getUserInfoAction } from '@/store/UserInfo/action'
+import { getUserInfo as getUserInfoAction, login as loginAction } from '@/store/UserInfo/action'
+import './index.scss'
 
 type Form = {username: string, password: string}
 
@@ -9,12 +13,24 @@ interface DispatchProps {
   getUserInfo():void
 }
 
-class Login extends Component<DispatchProps> {
+class Login extends Component<DispatchProps, any> {
   static displayName: string = 'Login'
 
+  private handleSubmit(form: any) {
+    console.log(form)
+  }
+
   public render() {
-    return <div>
-      Login
+    return <div className="login">
+      <div className="left">
+        <img src={logo} className="logo" alt=""/>
+        <p className="title">React Admin</p>
+      </div>
+      <div className="right">
+        <Card>
+          <LoginForm onSubmit={this.handleSubmit.bind(this)}/>
+        </Card>
+      </div>
     </div>
   }
 }
