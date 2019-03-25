@@ -46,10 +46,7 @@ class Main extends Component<IConfig & IDispatch> {
               onClick={this.props.toggle.bind(this, !this.props.collapsed)}
             />
           </Header>
-          <Content style={{
-            margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280,
-          }}
-          >
+          <Content>
             Content
           </Content>
         </Layout>

@@ -20,7 +20,7 @@
     padding-left: 24px;
     overflow: hidden;
     line-height: 64px;
-    background: white;
+    background: $contentBG;
     transition: all .3s;
     @extend %box-shadow;
   }
@@ -30,6 +30,9 @@
   }
 
   .ant-layout-content {
-    padding: 10px !important;
+    margin: 10px 10px;
+    padding: 10px;
+    background: $contentBG;
+    min-height: calc(100vh - 64px);
   }
 }
