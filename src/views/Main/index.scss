@@ -1,0 +1,35 @@
+@import '~@/assets/style/var.scss';
+.main {
+  height: 100%;
+  .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+    
+  }
+  
+  .trigger:hover {
+    color: #1890ff;
+  }
+  
+  .logo {
+    position: relative;
+    height: 64px;
+    padding-left: 24px;
+    overflow: hidden;
+    line-height: 64px;
+    background: white;
+    transition: all .3s;
+    @extend %box-shadow;
+  }
+
+  .ant-layout-sider {
+    background-color: $navBG;
+  }
+
+  .ant-layout-content {
+    padding: 10px !important;
+  }
+}
