@@ -1,7 +1,7 @@
 import React, { Component, Dispatch } from 'react'
+import { Button } from 'antd'
 import { connect } from 'react-redux'
 import { getUserInfo } from '@/store/UserInfo/action'
-import { Button } from 'antd'
 import { IUserInfo } from '@/store/UserInfo'
 
 interface OwnProps {

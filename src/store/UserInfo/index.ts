@@ -1,4 +1,4 @@
-import { GET_USER_INFO } from './action'
+import { IAction } from '@/type'
 
 export interface IUserInfo {
   workcode: string
@@ -6,7 +6,10 @@ export interface IUserInfo {
   department: string
 }
 
-export default (state: IUserInfo = { workcode: '', name: '', department: ''}, action: any) => {
+export const GET_USER_INFO = 'GET_USER_INFO'
+export const LOGIN = 'LOGIN'
+
+export default (state: IUserInfo = { workcode: '', name: '', department: ''}, action: IAction) => {
   switch (action.type) {
     case GET_USER_INFO:
         return action.payload
