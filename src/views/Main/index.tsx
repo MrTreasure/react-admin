@@ -1,10 +1,12 @@
 import * as actions from '@/store/config/action'
+import AdminMenu from './Menu'
 import React, { Component } from 'react'
 import { AnyAction, bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Dispatch } from 'react'
 import { Icon, Layout, Menu } from 'antd'
 import { IConfig } from '@/store/config'
+import { MENU_LIST } from '@/config'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import './index.scss'
 
@@ -15,6 +17,8 @@ interface IDispatch {
 const { Sider, Header, Content } = Layout
 
 class Main extends Component<IConfig & IDispatch> {
+  static displayName = 'AdminMain'
+
   public render() {
     return  (<Layout className="main">
         <Sider
@@ -23,20 +27,7 @@ class Main extends Component<IConfig & IDispatch> {
           collapsed={this.props.collapsed}
         >
           <div className="logo"> React Admin</div>
-          <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <Icon type="user" />
-              <span>nav 1</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="video-camera" />
-              <span>nav 2</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="upload" />
-              <span>nav 3</span>
-            </Menu.Item>
-          </Menu>
+          <AdminMenu datasource={MENU_LIST}/>
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
