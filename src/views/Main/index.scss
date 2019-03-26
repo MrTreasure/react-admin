@@ -40,7 +40,6 @@
     margin: 10px 10px;
     padding: 10px;
     background: $contentBG;
-    min-height: calc(100vh - 50px);
     overflow-y: auto;
     @extend %better-scroll;
   }
