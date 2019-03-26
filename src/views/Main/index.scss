@@ -33,6 +33,7 @@
     background-color: $navBG;
     overflow-y: auto;
     @extend %box-shadow;
+    @extend %better-scroll;
   }
 
   .ant-layout-content {
