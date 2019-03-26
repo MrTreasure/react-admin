@@ -7,6 +7,7 @@ import { FlowContextMenu } from '../components/EditorContextMenu'
 import { FlowDetailPanel } from '../components/EditorDetailPanel'
 import { FlowItemPanel } from '../components/EditorItemPanel'
 import { FlowToolbar } from '../components/EditorToolbar'
+import './index.scss'
 
 (GGEditor as any).setTrackable(false)
 
@@ -23,7 +24,7 @@ const FlowPage = () => {
           <FlowItemPanel />
         </Col>
         <Col span={16} className={styles.editorContent}>
-          <Flow className={styles.flow} />
+          <Flow style={{width: '100%', height: '100%'}} className={styles.flow}/>
         </Col>
         <Col span={4} className={styles.editorSidebar}>
           <FlowDetailPanel />
