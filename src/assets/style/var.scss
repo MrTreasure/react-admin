@@ -5,3 +5,23 @@ $contentBG: white;
 %box-shadow {
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
 }
+
+%better-scroll {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  &::webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(4, 18, 31, 0.575);
+    cursor: pointer;
+  }
+}

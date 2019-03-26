@@ -25,14 +25,22 @@
     @extend %box-shadow;
   }
 
+  .ant-layout {
+    overflow: hidden;
+  }
+
   .ant-layout-sider {
     background-color: $navBG;
+    overflow-y: auto;
+    @extend %box-shadow;
   }
 
   .ant-layout-content {
     margin: 10px 10px;
     padding: 10px;
     background: $contentBG;
-    min-height: calc(100vh - 64px);
+    min-height: calc(100vh - 50px);
+    overflow-y: auto;
+    @extend %better-scroll;
   }
 }
