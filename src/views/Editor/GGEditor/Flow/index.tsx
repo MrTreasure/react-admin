@@ -9,7 +9,7 @@ import { FlowItemPanel } from '../components/EditorItemPanel'
 import { FlowToolbar } from '../components/EditorToolbar'
 import './index.scss'
 
-(GGEditor as any).setTrackable(false)
+GGEditor.setTrackable(false)
 
 const FlowPage = () => {
   return (
