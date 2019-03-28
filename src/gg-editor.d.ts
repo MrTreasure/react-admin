@@ -1,3 +1,4 @@
+
 declare module 'gg-editor' {
   
   export interface Align {
@@ -34,8 +35,8 @@ declare module 'gg-editor' {
   }
 
   interface ReactProps {
-    style?: React.StyleHTMLAttributes
-    className?: React.ClassAttributes
+    style?: React.CSSProperties
+    className?: string
   }
 
   export interface BasicProps extends ReactProps {
@@ -44,7 +45,7 @@ declare module 'gg-editor' {
     /** G6的配置项 https://www.yuque.com/antv/g6/graph  */
     graph?: any
     /** 快捷键配置，内置命令 */
-    shortcut?: IShortcut
+    shortcut?: Shortcut
   }
 
   export interface FlowProps extends BasicProps {
@@ -273,15 +274,13 @@ declare module 'gg-editor' {
 
   export const CanvasPanel: React.ComponentClass<ReactProps, any>
   export const EdgePanel: React.ComponentClass<ReactProps, any>
-  export const GroupPanel: React.ComponentClass<ReactPropss, any>
+  export const GroupPanel: React.ComponentClass<ReactProps, any>
   export const MultiPanel: React.ComponentClass<ReactProps, any>
   export const NodePanel: React.ComponentClass<ReactProps, any>
   
-  export const Item: React.ComponentClass<ReactProps, any>
-
-  export const KoniCustomNode: React.ComponentClass<ReactProps & CommondProps & NormalEventProps, any>
+  export const KoniCustomNode: React.ComponentClass<ReactProps & GraphMouseReactEventsProps & GraphOtherReactEventsProps & PageReactEventsProps, any>
   
   /** 这里会带一个 Props 属性 https://github.com/gaoli/GGEditor/blob/master/docs/api/propsAPI.zh-CN.md */
-  export const withPropsAPI = (com: React.ComponentClass<ReactProps, any>): React.ComponentClass<any, any> => com
+  export function withPropsAPI(com: React.ComponentClass<ReactProps, any>): React.ComponentClass<any, any>
 
 }
