@@ -1,13 +1,13 @@
 import * as actions from '@/store/config/action'
 import AdminMenu from './Menu'
 import React, { Component } from 'react'
+import RouterView from './RouterView'
 import { AnyAction, bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Dispatch } from 'react'
 import { Icon, Layout, Menu } from 'antd'
 import { IConfig } from '@/store/config'
 import { MENU_LIST } from '@/config'
-import { Redirect, Route, Switch } from 'react-router-dom'
 import './index.scss'
 
 interface IDispatch {
@@ -38,7 +38,7 @@ class Main extends Component<IConfig & IDispatch> {
             />
           </Header>
           <Content>
-            Content
+            <RouterView/>
           </Content>
         </Layout>
       </Layout>

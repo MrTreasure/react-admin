@@ -3,6 +3,10 @@
 
 区别于 Ant Design 官方的 antd-pro，react-admin 采用 Typescript 开发。并且使用 redux，redux-promise 作为全局状态管理。
 
+### 郑重声明
+
+大量代码直接 copy [Ant Design Pro](https://pro.ant.design/docs/getting-started-cn), 只是按照个人的想法改造成了 TypeScript 版本，方便自己使用
+
 ### 开发踩坑盘点
 #### alias 路径问题
 ```json

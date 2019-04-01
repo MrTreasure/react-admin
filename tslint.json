@@ -1,0 +1,19 @@
+{
+  "extends": ["tslint-config-standard", "tslint-react", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts"
+    ]
+  },
+  "rules": {
+    "no-console": false,
+    "ordered-imports": false,
+    "jsx-no-lambda": false,
+    "no-unsafe-any": false,
+    "no-unused-variable": false,
+    "no-unused-expression": false,
+    "use-default-type-parameter": false,
+    "no-inferrable-types": false
+  }
+}
