@@ -31,13 +31,15 @@ export default class Code extends Component<CodeProps, any> {
   public componentDidMount() {
     this.editor = ace.edit('code-editor')
     this.editor.getSession().setMode('ace/mode/golang')
-    this.editor.setTheme('ace/theme/monokai')
+    this.editor.setTheme('ace/theme/github')
+    
     this.editor.on('change', this.handleEditorChange)
   }
 
   public getSnapshotBeforeUpdate(prevProps: CodeProps, prevState: any) {
     let languageUpdate: boolean = false
     let themeUpdate: boolean = false
+    
     if (prevProps.language !== this.props.language) {
       languageUpdate = true
     }
@@ -51,10 +53,13 @@ export default class Code extends Component<CodeProps, any> {
     }
   }
 
-  public componentDidUpdate(changeList: any) {
+  public componentDidUpdate(prevProps: CodeProps, prevState: any, changeList: any) {
     if (!this.editor) return
     if (changeList.languageUpdate && this.props.language) this.editor.getSession().setMode(this.props.language)
     if (changeList.themeUpdate && this.props.theme) this.editor.setTheme(this.props.theme)
+    if (this.props.value !== this.editor.getValue()) {
+      this.editor.setValue(this.props.value)
+    }
   }
 
   public componentWillUnmount() {

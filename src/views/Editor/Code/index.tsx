@@ -24,6 +24,14 @@ export default class CodePage extends Component<any, CodePageState> {
     })
   }
 
+  public componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        value: 'Hello Treasure'
+      })
+    }, 2000);
+  }
+
 
   public render() {
     return (
