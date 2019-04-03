@@ -1,3 +1,4 @@
+import Code from '@/views/Editor/Code'
 import Flow from '@/views/Editor/GGEditor/Flow'
 import Mind from '@/views/Editor/GGEditor/Mind'
 import React from 'react'
@@ -8,6 +9,7 @@ const RouterView = (props: any) => {
     <Switch>
       <Route path="/editor/flow" component={Flow}/>
       <Route path="/editor/mind" component={Mind}/>
+      <Route path="/editor/code" component={Code}/>
     </Switch>
   )
 }
