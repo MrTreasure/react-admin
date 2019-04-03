@@ -4,15 +4,15 @@ import { RegisterNode } from 'gg-editor'
 class KoniCustomNode extends React.Component {
   render() {
     const config = {
-      draw(item) {
-        const keyShape = this.drawKeyShape(item);
+      draw(item: any): any {
+        const keyShape = this.drawKeyShape(item)
 
         // draw label
-        this.drawLabel(item);
+        this.drawLabel(item)
 
         // draw image
-        const group = item.getGraphicGroup();
-        const model = item.getModel();
+        const group = item.getGraphicGroup()
+        const model = item.getModel()
 
         group.addShape('image', {
           attrs: {
@@ -20,13 +20,19 @@ class KoniCustomNode extends React.Component {
             y: -7,
             img: model.icon,
           },
-        });
+        })
 
         return keyShape;
       },
-    };
 
-    return <RegisterNode name="koni-custom-node" config={config} />;
+      drawKeyShape(item: any): any {
+
+      },
+
+      drawLabel(item: any): any {}
+    }
+
+    return <RegisterNode name="koni-custom-node" config={config} />
   }
 }
 
