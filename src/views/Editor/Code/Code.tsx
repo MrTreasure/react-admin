@@ -3,10 +3,22 @@ import React, { Component } from 'react'
 import 'brace/mode/typescript'
 import 'brace/mode/javascript'
 import 'brace/mode/golang'
+import 'brace/mode/html'
+import 'brace/mode/json'
+import 'brace/mode/markdown'
+import 'brace/mode/mysql'
+import 'brace/theme/tomorrow'
+import 'brace/theme/solarized_light'
+import 'brace/mode/toml'
+import 'brace/mode/yaml'
 import 'brace/theme/monokai'
 import 'brace/theme/solarized_light'
 import 'brace/theme/github'
-
+import 'brace/theme/chrome'
+import 'brace/theme/clouds'
+import 'brace/mode/dockerfile'
+import 'brace/theme/solarized_dark'
+import 'brace/mode/tsx'
 
 interface CodeProps {
   value: string
@@ -40,7 +52,6 @@ export default class Code extends Component<CodeProps, any> {
   public getSnapshotBeforeUpdate(prevProps: CodeProps, prevState: any) {
     let languageUpdate: boolean = false
     let themeUpdate: boolean = false
-    
     if (prevProps.language !== this.props.language) {
       languageUpdate = true
     }
@@ -56,8 +67,8 @@ export default class Code extends Component<CodeProps, any> {
 
   public componentDidUpdate(prevProps: CodeProps, prevState: any, changeList: any) {
     if (!this.editor) return
-    if (changeList.languageUpdate && this.props.language) this.editor.getSession().setMode(this.props.language)
-    if (changeList.themeUpdate && this.props.theme) this.editor.setTheme(this.props.theme)
+    if (changeList.languageUpdate && this.props.language) this.editor.getSession().setMode(`ace/mode/${this.props.language}`)
+    if (changeList.themeUpdate && this.props.theme) this.editor.setTheme(`ace/theme/${this.props.theme}`)
     if (this.props.value !== this.editor.getValue()) {
       this.editor.setValue(this.props.value)
     }
