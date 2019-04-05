@@ -1,5 +1,7 @@
 import Code from './Code'
+import CodeToolbar from './components/Toolbar'
 import React, { Component } from 'react'
+import { Col, Row } from 'antd'
 import './index.scss'
 
 
@@ -36,6 +38,11 @@ export default class CodePage extends Component<any, CodePageState> {
   public render() {
     return (
       <div className='code-page'>
+        <Row type="flex" className="codeHd">
+          <Col span={24}>
+            <CodeToolbar />
+          </Col>
+        </Row>
         <Code onchange={this.handleChange} value={this.state.value}/>
       </div>
     )
