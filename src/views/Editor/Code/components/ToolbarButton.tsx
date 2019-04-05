@@ -1,8 +1,8 @@
 import Command from './Command'
-import IconFont from './IconFont'
 import React from 'react'
 import styles from './index.module.scss'
 import upperFirst from 'lodash/upperFirst'
+import { Icon } from 'antd'
 import { Tooltip } from 'antd'
 
 const ToolbarButton = (props: any) => {
@@ -15,7 +15,7 @@ const ToolbarButton = (props: any) => {
         placement="bottom"
         overlayClassName={styles.tooltip}
       >
-        <IconFont type={`icon-${icon || command}`} />
+        <Icon type={`${icon || command}`} />
       </Tooltip>
     </Command>
   )

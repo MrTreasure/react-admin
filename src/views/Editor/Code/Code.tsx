@@ -8,18 +8,17 @@ import 'brace/mode/json'
 import 'brace/mode/markdown'
 import 'brace/mode/mysql'
 import 'brace/mode/sh'
-import 'brace/theme/tomorrow'
+import 'brace/theme/solarized_light'
 import 'brace/mode/tsx'
 import 'brace/mode/toml'
 import 'brace/mode/yaml'
 import 'brace/theme/monokai'
-import 'brace/theme/solarized_light'
 import 'brace/theme/github'
 import 'brace/theme/chrome'
 import 'brace/theme/clouds'
 import 'brace/mode/dockerfile'
 import 'brace/theme/solarized_dark'
-import 'brace/theme/solarized_light'
+import 'brace/theme/tomorrow'
 
 interface CodeProps {
   value: string
@@ -46,6 +45,7 @@ export default class Code extends Component<CodeProps, any> {
     this.editor = ace.edit('code-editor')
     this.editor.getSession().setMode('ace/mode/golang')
     this.editor.setTheme('ace/theme/github')
+    this.editor.setFontSize((16 as any))
     this.editor.on('change', this.handleEditorChange)
     this.props.instance && this.props.instance(this.editor)
   }
@@ -72,6 +72,7 @@ export default class Code extends Component<CodeProps, any> {
     if (changeList.themeUpdate && this.props.theme) this.editor.setTheme(`ace/theme/${this.props.theme}`)
     if (this.props.value !== this.editor.getValue()) {
       this.editor.setValue(this.props.value)
+      this.editor.navigateFileEnd()
     }
   }
 

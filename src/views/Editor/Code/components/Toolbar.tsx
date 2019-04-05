@@ -12,7 +12,6 @@ interface ToolbarProps {
 
 const THEME_LIST = [
   'monokai',
-  'solarized_light',
   'github',
   'chrome',
   'clouds',
@@ -32,7 +31,7 @@ const LANGUAGE_LIST = [
   'markdown',
   'mysql',
   'dockerfile',
-  'tomal',
+  'toml',
   'yaml',
   'sh'
 ]
@@ -68,16 +67,18 @@ const CodeToolbar = (props: any) => {
       <ToolbarButton command="undo" />
       <ToolbarButton command="redo" />
       <Divider type="vertical" />
-      <ToolbarButton command="zoomIn" icon="zoom-in" text="Zoom In" />
-      <ToolbarButton command="zoomOut" icon="zoom-out" text="Zoom Out" />
-      <ToolbarButton command="autoZoom" icon="fit-map" text="Fit Map" />
-      <ToolbarButton command="resetZoom" icon="actual-size" text="Actual Size" />
+      <ToolbarButton command="lock" />
+      <ToolbarButton command="unlock" />
       <Divider type="vertical" />
-      <ToolbarButton command="append" text="Topic" />
-      <ToolbarButton command="appendChild" icon="append-child" text="Subtopic" />
+      <ToolbarButton command="save" />
+      <ToolbarButton command="load" icon="file-text" />
       <Divider type="vertical" />
-      <ToolbarButton command="collapse" text="Fold" />
-      <ToolbarButton command="expand" text="Unfold" />
+      <ToolbarButton command="select" icon="highlight"/>
+      <ToolbarButton command="delete"/>
+      <Divider type="vertical" />
+      <Select defaultValue="16" style={{ width: 80, marginRight: '10px' }} onChange={props.onFontSize} size="small">
+        {[12, 14, 16, 18, 20, 22, 24, 26, 28].map((item: number) => <Option key={item} value={item}>{item + 'px'}</Option>)}
+      </Select>
       <Select defaultValue="golang" style={{ width: 120, marginRight: '10px' }} onChange={props.onLanguage} size="small">
         {LANGUAGE_LIST.map((item: string) => <Option key={item} value={item}>{upperFirst(item)}</Option>)}
       </Select>
