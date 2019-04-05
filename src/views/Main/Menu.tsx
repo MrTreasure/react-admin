@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, Menu } from 'antd'
 import { IMenuItem } from '@/type'
+import { Link } from 'react-router-dom'
 
 interface IAdminMenuProps {
   datasource: IMenuItem[]
@@ -31,7 +32,7 @@ export default class AdminMenu extends Component<IAdminMenuProps, any> {
   }
 
   public renderLeafMenu(menu: IMenuItem) {
-    return <Item key={menu.value}>{menu.label}</Item>
+    return <Item key={menu.value}>{menu.path ? <Link to={menu.path}>{menu.label}</Link> : menu.label}</Item>
   }
 
   public render() {

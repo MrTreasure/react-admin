@@ -149,11 +149,13 @@ export const MENU_LIST: IMenuItem[] = [
     children: [
       {
         label: '流程编辑器',
-        value: 'flow'
+        value: 'flow',
+        path: '/editor/flow'
       },
       {
         label: '脑图编辑器',
-        value: 'mind'
+        value: 'mind',
+        path: '/editor/mind'
       },
       {
         label: '拓扑编辑器',
@@ -161,11 +163,13 @@ export const MENU_LIST: IMenuItem[] = [
       },
       {
         label: 'MD编辑器',
-        value: 'markdown'
+        value: 'markdown',
+        path: '/editor/markdown'
       },
       {
         label: '代码编辑器',
-        value: 'code'
+        value: 'code',
+        path: '/editor/code'
       }
     ]
   }
