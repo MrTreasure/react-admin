@@ -1,3 +1,4 @@
+import CommandCtonext from './CommandContext'
 import React from 'react'
 import styles from './index.module.scss'
 import ToolbarButton from './ToolbarButton'
@@ -5,22 +6,35 @@ import { Divider } from 'antd'
 
 interface ToolbarProps {
   className: string
-
+  onCommand?(command:string):void
 }
 
 class Toolbar extends React.Component<ToolbarProps> {
+
+  public constructor(props: ToolbarProps) {
+    super(props)
+
+    this.onComandExecte = this.onComandExecte.bind(this)
+  }
+
+  public onComandExecte(command: string) {
+    this.props.onCommand && this.props.onCommand(command)
+  }
+
   public render() {
     return (
       <div className={this.props.className}>
-        {this.props.children}
+        <CommandCtonext.Provider value={this.onComandExecte}>
+          {this.props.children}
+        </CommandCtonext.Provider>
       </div>
     )
   }
 }
 
-const CodeToolbar = () => {
+const CodeToolbar = (props: any) => {
   return (
-    <Toolbar className={styles.toolbar}>
+    <Toolbar className={styles.toolbar} onCommand={props.onCommand}>
       <ToolbarButton command="undo" />
       <ToolbarButton command="redo" />
       <Divider type="vertical" />

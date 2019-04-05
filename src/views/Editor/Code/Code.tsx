@@ -12,7 +12,8 @@ interface CodeProps {
   value: string
   language?: string
   theme?: string
-  onchange?(value: string):void
+  onchange?(value: string): void
+  instance?(ctx: ace.Editor): void
 }
 
 export default class Code extends Component<CodeProps, any> {
@@ -32,8 +33,8 @@ export default class Code extends Component<CodeProps, any> {
     this.editor = ace.edit('code-editor')
     this.editor.getSession().setMode('ace/mode/golang')
     this.editor.setTheme('ace/theme/github')
-    
     this.editor.on('change', this.handleEditorChange)
+    this.props.instance && this.props.instance(this.editor)
   }
 
   public getSnapshotBeforeUpdate(prevProps: CodeProps, prevState: any) {

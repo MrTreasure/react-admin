@@ -1,3 +1,4 @@
+import CommandContext from './CommandContext'
 import React, { Component } from 'react'
 
 interface CommandProps {
@@ -8,9 +9,14 @@ class Command extends Component<CommandProps, any> {
   public render() {
     const { name, children } = this.props
     return (
-      <div className="command" data-command={name}>
-        {children}
-      </div>
+      <CommandContext.Consumer>
+        {(commandExecute: any) => (
+          <div className="command" data-command={name} onClick={() => commandExecute(name)}>
+            {children}
+          </div>
+        )}
+      </CommandContext.Consumer>
+
     )
   }
 }
