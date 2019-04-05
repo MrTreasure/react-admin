@@ -23,16 +23,18 @@ const THEME_LIST = [
 
 const LANGUAGE_LIST = [
   'typescript',
+  'tsx',
   'javascript',
+  'jsx',
   'golang',
   'html',
   'json',
   'markdown',
   'mysql',
   'dockerfile',
-  'tsx',
   'tomal',
-  'yaml'
+  'yaml',
+  'sh'
 ]
 
 const Option = Select.Option
@@ -79,7 +81,7 @@ const CodeToolbar = (props: any) => {
       <Select defaultValue="golang" style={{ width: 120, marginRight: '10px' }} onChange={props.onLanguage} size="small">
         {LANGUAGE_LIST.map((item: string) => <Option key={item} value={item}>{upperFirst(item)}</Option>)}
       </Select>
-      <Select defaultValue="github" style={{ width: 120 }} onChange={props.onTheme} size="small">
+      <Select defaultValue="github" style={{ width: 180 }} onChange={props.onTheme} size="small">
         {THEME_LIST.map((item: string) => <Option key={item} value={item}>{upperFirst(item)}</Option>)}
       </Select>
     </Toolbar>
