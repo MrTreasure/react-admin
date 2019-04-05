@@ -14,6 +14,13 @@
     "no-unused-variable": false,
     "no-unused-expression": false,
     "use-default-type-parameter": false,
-    "no-inferrable-types": false
+    "no-inferrable-types": false,
+    "semicolon": false,
+    "no-trailing-whitespace": true,
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ]
   }
 }

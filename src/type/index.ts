@@ -9,4 +9,5 @@ export interface IMenuItem {
   label: string
   value: string
   children?: IMenuItem[]
+  path?: string
 }
