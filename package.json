@@ -14,6 +14,7 @@
     "gg-editor": "^2.0.2",
     "immer": "^2.1.4",
     "lodash": "^4.17.11",
+    "lodash-decorators": "^6.0.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",

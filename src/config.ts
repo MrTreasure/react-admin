@@ -29,7 +29,8 @@ export const MENU_LIST: IMenuItem[] = [
     children: [
       {
         label: '基础表单',
-        value: 'basicForm'
+        value: 'basicForm',
+        path: '/form/basicForm'
       },
       {
         label: '分步表单',
