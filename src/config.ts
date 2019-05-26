@@ -14,7 +14,8 @@ export const MENU_LIST: IMenuItem[] = [
       },
       {
         label:'监控页',
-        value: 'monitor'
+        value: 'monitor',
+        path: '/dashboard/monitor'
       },
       {
         label: '工作台',

@@ -5,11 +5,13 @@ import Mind from '@/views/Editor/GGEditor/Mind'
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import BasicForm from '@/views/Form/BasicForm';
+import Monitor from '@/views/Dashboard/Monitor'
 
 const RouterView = (props: any) => {
   return (
     <Switch>
       <Route path="/form/basicForm" component={BasicForm}/>
+      <Route path="/dashboard/monitor" component={Monitor}/>
       <Route path="/editor/flow" component={Flow}/>
       <Route path="/editor/mind" component={Mind}/>
       <Route path="/editor/code" component={Code}/>
