@@ -13,9 +13,10 @@ export default class BasicForm extends React.Component {
   }
 
   @Bind()
-  private handleInput(val: any) {
+  private handleInput(event: React.ChangeEvent<HTMLInputElement>) {
+    console.log(event)
     this.setState({
-      val: val.target.value
+      value: event.target.value
     })
   }
 
@@ -57,7 +58,7 @@ export default class BasicForm extends React.Component {
           </Col>
           <Col span={12}>
             <Card title="结果页">
-              {this.state.resList.map((item: string, index: number) => <Alert message={`${index + 1}. ${item}`} type="success"/>)}
+              {this.state.resList.map((item: string, index: number) => <Alert className="alert-item" key={index} message={`${index + 1}. ${item}`} type="success"/>)}
             </Card>
           </Col>
         </Row>
