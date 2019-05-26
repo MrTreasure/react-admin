@@ -29,7 +29,8 @@ export const MENU_LIST: IMenuItem[] = [
     children: [
       {
         label: '基础表单',
-        value: 'basicForm'
+        value: 'basicForm',
+        path: '/form/basicForm'
       },
       {
         label: '分步表单',
@@ -143,26 +144,26 @@ export const MENU_LIST: IMenuItem[] = [
     ]
   },
   {
-    label: '图形编辑器',
+    label: '编辑器',
     value: 'editor',
     icon: 'highlight',
     children: [
       {
-        label: '流程编辑器',
+        label: '流程图',
         value: 'flow',
         path: '/editor/flow'
       },
       {
-        label: '脑图编辑器',
+        label: '脑图',
         value: 'mind',
         path: '/editor/mind'
       },
       {
-        label: '拓扑编辑器',
+        label: '拓扑图',
         value: 'koni'
       },
       {
-        label: 'MD编辑器',
+        label: 'Markdown',
         value: 'markdown',
         path: '/editor/markdown'
       },
