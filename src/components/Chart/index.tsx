@@ -17,6 +17,7 @@ interface ChartProps {
   mouseOut?(e: any): void
   globalOut?(e: any): void
   contextMenu?(e: any): void
+  onEChart?(chart: ECharts.ECharts): void
   debug?: boolean
   // 高度 默认 400 px
   height?: number
