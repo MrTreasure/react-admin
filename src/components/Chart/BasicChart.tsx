@@ -70,6 +70,7 @@ export default class Chart extends React.Component<ChartProps> {
   }
 
   public getSnapshotBeforeUpdate(prevProps: ChartProps) {
+    this.debug('getSnapshotBeforeUpdate', prevProps.options, this.props.options)
     if (prevProps.options !== this.props.options) {
       this.debug('prevProps:', prevProps)
       this.debug('currentProps:', this.props)

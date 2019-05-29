@@ -1,102 +1,32 @@
 import * as React from 'react'
-import style from './index.module.scss'
-import * as ECharts from 'echarts'
-import { EChartError, resizeCenter } from './utils'
+import { Omit } from '@/type'
+import BasicChart from './BasicChart'
 
-interface ChartProps {
-  // 是否合并绘制
-  notMerge?: boolean
+type notWatch = 'watch' | 'options' | 'getNewOption'
+
+interface ChartProps<T, K> {
+  columns: T[]
+  rows: K[]
   options: any
-  lazyUpdate?: boolean
-  onClick?(e: any): void
-  dbClick?(e: any): void
-  mouseDown?(e: any): void
-  mouseMove?(e: any): void
-  mouseUp?(e: any): void
-  mouseOver?(e: any): void
-  mouseOut?(e: any): void
-  globalOut?(e: any): void
-  contextMenu?(e: any): void
-  onEChart?(chart: ECharts.ECharts): void
-  debug?: boolean
-  // 高度 默认 400 px
-  height?: number
+  /*监听指定的属性，一下属性的改变将引起 EChart 的重绘(default: 'columns' | 'rows')*/
+  watch?: (keyof Omit<ChartProps<T, K>, notWatch>)[]
+  getNewOption(option:any, columns: T[], rows: K[]): any
+  [key: string]: any
 }
 
-export default class Chart extends React.Component<ChartProps> {
+export default class Chart<T = any, K = any> extends React.Component<ChartProps<T, K>, any> {
 
-  private echartDom: HTMLDivElement | null = null
-  private echart: ECharts.ECharts | null = null
+  static BasicWatch = ['columns', 'rows']
 
-  private bindListener(chart: ECharts.ECharts) {
-    const { onClick, dbClick, mouseDown, mouseMove, mouseUp, mouseOver, mouseOut, globalOut, contextMenu } = this.props
-    onClick && chart.on('click', onClick)
-    dbClick && chart.on('dbclick', dbClick)
-    mouseDown && chart.on('mousedown', mouseDown)
-    mouseMove && chart.on('mousemove', mouseMove)
-    mouseUp && chart.on('mouseup', mouseUp)
-    mouseOver && chart.on('mouseover', mouseOver)
-    mouseOut && chart.on('mouseout', mouseOut)
-    globalOut && chart.on('globalout', globalOut)
-    contextMenu && chart.on('contextmenu', contextMenu)
-  }
-
-  private removeListener(chart: ECharts.ECharts) {
-    const { onClick, dbClick, mouseDown, mouseMove, mouseUp, mouseOver, mouseOut, globalOut, contextMenu } = this.props
-    onClick && chart.off('click', onClick)
-    dbClick && chart.off('dbclick', dbClick)
-    mouseDown && chart.off('mousedown', mouseDown)
-    mouseMove && chart.off('mousemove', mouseMove)
-    mouseUp && chart.off('mouseup', mouseUp)
-    mouseOver && chart.off('mouseover', mouseOver)
-    mouseOut && chart.off('mouseout', mouseOut)
-    globalOut && chart.off('globalout', globalOut)
-    contextMenu && chart.off('contextmenu', contextMenu)
-  }
-
-  private debug(...info: any) {
-    this.props.debug && console.log(...info)
-  }
-
-  public componentDidMount() {
-    if (!this.echartDom) {
-      throw new EChartError('dom not found')
-    }
-    this.echart = ECharts.init(this.echartDom)
-    this.echart.setOption(this.props.options)
-    this.bindListener(this.echart)
-    resizeCenter.add(this.echart)
-    this.debug('echart mounted')
-  }
-
-  public getSnapshotBeforeUpdate(prevProps: ChartProps) {
-    if (prevProps.options !== this.props.options) {
-      this.debug('prevOptions:', prevProps)
-      this.debug('currentProps:', this.props.options)
-      return this.props.options
-    } else {
-      return null
-    }
-  }
-
-  public componentDidUpdate(props: ChartProps) {
-    if (props.options) {
-      console.log(props.options)
-      this.echart && this.echart.setOption(props.options, this.props.notMerge, this.props.lazyUpdate)
-    }
-  }
-
-  public componentWillUnmount() {
-    if (!this.echart) return
-    resizeCenter.remove(this.echart)
-    this.removeListener(this.echart)
-    this.echart.dispose()
-    this.echart = null
-    this.debug('echart destoryed')
+  public shouldComponentUpdate(nextProps:ChartProps<T, K>, nextState: any): boolean {
+    const watch = Chart.BasicWatch.concat((this.props.watch as any))
+    return watch.some((key: string) => {
+      return nextProps[key] !== this.props[key]
+    })
   }
 
   public render() {
-    const { height } = this.props
-    return <div className={style.chart} ref={dom => this.echartDom = dom} style={{height: height ? `${height}px` : '400px'}}/>
+    const { getNewOption, columns, rows, options } = this.props
+    return <BasicChart {...this.props} options={getNewOption(options, columns, rows)}/>
   }
 }
