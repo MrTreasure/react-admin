@@ -1,72 +1,55 @@
 import * as React from 'react'
-import Chart from '@/components/Chart'
 import './index.scss'
-import produce from 'immer'
-import { Button } from 'antd'
-import { Bind } from 'lodash-decorators'
+import { Row, Col } from 'antd'
+import LineChart from '@/components/LineChart'
+import Chance from 'chance'
 
-const mock = () => {
-  return {
-    xAxis: {
-        data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-    },
-    yAxis: {},
-    series: [{
-      name: '',
-      type: 'bar',
-      data: [],
-      label: {
-        show: true
-      }
-    }]
+const chance = new Chance()
+
+const list = [0,1,2,3,4,5,6,7,8,9,10]
+
+const columns = ['xAxis', 'first', 'second']
+
+const max = (prev: number) => {
+  let start = 0
+  while(start < prev) {
+    start = chance.integer({ min: 0, max: prev + 100})
   }
+  return start
 }
+
+const rows: any[] = list.reduce((arr: any[], current, index) => {
+  let obj
+  if (index === 0) {
+    obj = {
+      xAxis: current,
+      first: 100,
+      second: 200,
+      third: 300
+    }
+  } else {
+    obj = {
+      xAxis: current,
+      first: max(arr[index - 1].first),
+      second: max(arr[index - 1].second),
+      third: max(arr[index - 1].third)
+    }
+  }
+  arr.push(obj)
+  return arr
+}, [])
 
 export default class Monitor extends React.Component<any, any> {
 
-  public state = {
-    options: mock(),
-    columns: ['销量'],
-    rows: [{'销量': 5}, {'销量': 10}, {'销量': 15}, {'销量': 20}, {'销量': 25}, {'销量': 30}],
-    index: 0
-  }
-
-  @Bind()
-  private handleClick(e: any) {
-    this.setState({
-      rows: produce(this.state.rows, rows => {
-        rows[0].销量 = rows[0].销量 + 5
-      })
-    })
-  }
-  
-  @Bind()
-  private handleIndex(e: any) {
-    this.setState({
-      index: this.state.index + 1
-    })
-  }
-
-  private getNewOption(opt: any, columns: any[], rows: any[]): any {
-    return produce(opt, options => {
-        options.series[0].name = columns[0]
-        options.series[0].data = rows.map(row => {
-        return row[columns[0]]
-      })
-    })
-  }
 
   public render() {
     return (
       <div className="monitor">
-        <Button.Group>
-          <Button onClick={this.handleClick}>绘制</Button>
-          <Button onClick={this.handleIndex}>额外属性</Button>
-        </Button.Group>
-        <div>{this.state.index}</div>
-        <div className="chart-wrapper">
-          <Chart rows={this.state.rows} columns={this.state.columns} options={this.state.options} getNewOption={this.getNewOption} index={this.state.index} watch={['extra']} debug={true}/>
-        </div>
+        <Row gutter={10}>
+          <Col span={12}>
+            <LineChart columns={columns} rows={rows}/>
+          </Col>
+        </Row>
       </div>
     )
   }
