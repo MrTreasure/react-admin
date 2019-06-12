@@ -53,6 +53,7 @@
     "@types/redux-actions": "^2.6.0",
     "@types/redux-promise": "^0.5.28",
     "babel-plugin-import": "^1.11.0",
+    "chance": "^1.0.18",
     "customize-cra": "^0.2.12",
     "node-sass": "^4.11.0",
     "react-app-rewired": "^2.1.1",
