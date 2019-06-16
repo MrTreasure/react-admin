@@ -9,7 +9,7 @@ const chance = new Chance()
 
 const list = [0,1,2,3,4,5,6,7,8,9,10]
 
-const columns = ['xAxis', 'first', 'second'].map(key => generateColumn(key, key, 'thousand'))
+const columns = ['xAxis', 'first', 'second', 'third'].map(key => generateColumn(key, key, 'thousand'))
 
 const max = (prev: number) => {
   let start = 0
@@ -39,6 +39,7 @@ const rows: any[] = list.reduce((arr: any[], current, index) => {
   arr.push(obj)
   return arr
 }, [])
+
 
 export default class Monitor extends React.Component<any, any> {
 

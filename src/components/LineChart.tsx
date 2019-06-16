@@ -4,7 +4,9 @@ import produce from 'immer'
 import { COLORS } from '@/config'
 import Color from 'color'
 import { IColumn } from '@/type'
-import { handleTypeFormat } from '@/utils/util';
+import { handleTypeFormat } from '@/utils/util'
+import merge from 'webpack-merge'
+import { AXIS_COLOR, LABEL_COLOR } from './util'
 
 const options = {
   color: COLORS,
@@ -18,15 +20,42 @@ const options = {
   tooltip: {
     trigger: 'axis'
   },
-  grid: {
-    show: true
-  },
   xAxis: {
     type: 'category',
-    data: []
+    data: [],
+    axisLine: {
+      lineStyle: {
+        color: AXIS_COLOR
+      }
+    },
+    axisLabel: {
+      color: LABEL_COLOR
+    },
+    axisTick: {
+      lineStyle: {
+        color: LABEL_COLOR
+      }
+    }
   },
   yAxis: {
-    type: 'value'
+    type: 'value',
+    axisLine: {
+      lineStyle: {
+        color: AXIS_COLOR
+      }
+    },
+    axisTick: {
+      show: false
+    },
+    axisLabel: {
+      color: LABEL_COLOR
+    },
+    splitLine: {
+      lineStyle: {
+        color: AXIS_COLOR,
+        type: 'dotted'
+      }
+    }
   },
   series: []
 }
@@ -34,6 +63,7 @@ const options = {
 interface LineChartProps {
   columns: IColumn[]
   rows: any[]
+  options?: any
 }
 
 export default class LineChart extends React.Component<LineChartProps, any> {
@@ -41,17 +71,18 @@ export default class LineChart extends React.Component<LineChartProps, any> {
     return produce(option, opt => {
       const xAxisKey = columns[0].key
       const keys = rows.map(item => item[xAxisKey])
-      opt.yAxis.formatter = (val: number) => {
+      opt.yAxis.axisLabel.formatter = (val: number) => {
         return handleTypeFormat(columns[0].type, val, columns[0].symbol)
       }
       opt.xAxis.data = keys
-      opt.legend.data = columns.slice(1)
+      opt.legend.data = columns.slice(1).map(column => column.label)
       opt.series = columns.slice(1).map((column, index) => {
         const color = Color(COLORS[index])
         return {
           type: 'line',
           name: column.label,
           data: rows.map(item => item[column.key]),
+          symbol: 'none',
           areaStyle: {
             color: {
               type: 'linear',
@@ -76,6 +107,7 @@ export default class LineChart extends React.Component<LineChartProps, any> {
   }
 
   public render() {
-    return <Chart options={options} getNewOption={this.getNewOption} columns={this.props.columns} rows={this.props.rows}/>
+    const opt = this.props.options ? merge(options, this.props.options): options
+    return <Chart options={opt} getNewOption={this.getNewOption} columns={this.props.columns} rows={this.props.rows}/>
   }
 }

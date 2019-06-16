@@ -177,4 +177,4 @@ export const MENU_LIST: IMenuItem[] = [
   }
 ]
 
-export const COLORS = ['#ed4884', '#b453c4', '#895bfb', '#3da0fd', '#84cc42', '#84cc42']
+export const COLORS = ['#ed4884', '#b453c4', '#3da0fd', '#895bfb', '#84cc42', '#84cc42']
