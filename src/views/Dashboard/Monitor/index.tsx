@@ -3,7 +3,8 @@ import './index.scss'
 import { Row, Col } from 'antd'
 import { generateColumn } from '@/components/util'
 import Chance from 'chance'
-import { LineChart, BarChart, Label } from '@/components'
+import { LineChart, BarChart, Label, SimpleLine } from '@/components'
+import { COLORS } from '@/config'
 
 const chance = new Chance()
 
@@ -56,9 +57,11 @@ export default class Monitor extends React.Component<any, any> {
     return (
       <div className="monitor">
         <div className="label-list" style={{marginBottom: '20px'}}>
-        {labelList.map(item => {
+        {labelList.map((item, index) => {
           return (
-            <Label className="label-item" style={{width: '400px'}} key={item.title} type={item.type} {...item}/>
+            <Label className="label-item" style={{width: '400px'}} key={item.title} type={item.type} {...item}>
+              <SimpleLine color={COLORS[index]} columns={columns.slice(0, 2)} rows={rows} height={100}/>
+            </Label>
           )
         })}
         </div>
