@@ -1,0 +1,27 @@
+.title {
+  font-size: 18px;
+  color: black;
+  font-weight: 700;
+}
+
+.contentWrap {
+  display: flex
+}
+
+.left {
+  flex: 3;
+}
+
+.right {
+  flex: 2;
+}
+
+.value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.coTitle {
+  color: #989898;
+  font-size: 14px;
+}

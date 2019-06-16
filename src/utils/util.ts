@@ -1,7 +1,7 @@
 import { FormatType } from '@/type'
 import numeral from 'numeral'
 
-export const handleTypeFormat = (type: FormatType, val: Number | string, format?: string) => {
+export const handleTypeFormat = (type: FormatType | string, val: Number | string, format?: string) => {
   const value = numeral(val)
   if (format) return value.format(format)
 
