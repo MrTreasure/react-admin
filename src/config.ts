@@ -14,7 +14,8 @@ export const MENU_LIST: IMenuItem[] = [
       },
       {
         label:'监控页',
-        value: 'monitor'
+        value: 'monitor',
+        path: '/dashboard/monitor'
       },
       {
         label: '工作台',
@@ -175,3 +176,5 @@ export const MENU_LIST: IMenuItem[] = [
     ]
   }
 ]
+
+export const COLORS = ['#ed4884', '#b453c4', '#3da0fd', '#895bfb', '#84cc42', '#84cc42']
