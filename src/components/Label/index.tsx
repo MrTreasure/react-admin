@@ -21,7 +21,7 @@ export default class Label extends React.Component<LabelProps, any> {
 
    return (
      
-     <Card style={this.props.style} className={this.props.className} size="small" bordered={false}>
+     <Card style={this.props.style} className={this.props.className} size="small" bordered={false} hoverable>
        <div className={style.title}>
           {title}
           {tip ? (<Tip content={tip}/>) : null}

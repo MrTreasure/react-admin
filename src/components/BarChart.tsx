@@ -103,8 +103,6 @@ export default class BarChart extends React.Component<BarChartProps, any> {
 
   public render() {
     const opt = this.props.options ? merge(options, this.props.options): options
-    return <div style={{background: 'white', padding: '10px'}}>
-      <Chart options={opt} getNewOption={this.getNewOption} columns={this.props.columns} rows={this.props.rows}/>
-    </div>
+    return <Chart options={opt} getNewOption={this.getNewOption} columns={this.props.columns} rows={this.props.rows}/>
   }
 }
