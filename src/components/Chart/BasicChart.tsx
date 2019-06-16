@@ -59,14 +59,16 @@ export default class Chart extends React.Component<ChartProps> {
   }
 
   public componentDidMount() {
-    if (!this.echartDom) {
-      throw new EChartError('dom not found')
-    }
-    this.echart = ECharts.init(this.echartDom)
-    this.echart.setOption(this.props.options)
-    this.bindListener(this.echart)
-    resizeCenter.add(this.echart)
-    this.debug('echart mounted')
+    window.setTimeout(() => {
+      if (!this.echartDom) {
+        throw new EChartError('dom not found')
+      }
+      this.echart = ECharts.init(this.echartDom)
+      this.echart.setOption(this.props.options)
+      this.bindListener(this.echart)
+      resizeCenter.add(this.echart)
+      this.debug('echart mounted')
+    }, 500)
   }
 
   public getSnapshotBeforeUpdate(prevProps: ChartProps) {
