@@ -14,7 +14,7 @@ const columns = ['xAxis', 'first', 'second'].map(key => generateColumn(key, key,
 const max = (prev: number) => {
   let start = 0
   while(start < prev) {
-    start = chance.integer({ min: 0, max: prev + 100})
+    start = chance.integer({ min: 0, max: prev + 500})
   }
   return start
 }

@@ -4,6 +4,7 @@ import produce from 'immer'
 import { COLORS } from '@/config'
 import Color from 'color'
 import { IColumn } from '@/type'
+import { handleTypeFormat } from '@/utils/util';
 
 const options = {
   color: COLORS,
@@ -40,6 +41,9 @@ export default class LineChart extends React.Component<LineChartProps, any> {
     return produce(option, opt => {
       const xAxisKey = columns[0].key
       const keys = rows.map(item => item[xAxisKey])
+      opt.yAxis.formatter = (val: number) => {
+        return handleTypeFormat(columns[0].type, val, columns[0].symbol)
+      }
       opt.xAxis.data = keys
       opt.legend.data = columns.slice(1)
       opt.series = columns.slice(1).map((column, index) => {
