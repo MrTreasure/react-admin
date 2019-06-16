@@ -13,3 +13,11 @@ export interface IMenuItem {
   children?: IMenuItem[]
   path?: string
 }
+
+export type FormatType = '' | 'KMB' | 'percent' | 'thousand'
+export interface IColumn {
+  key: string
+  label: string
+  type: FormatType
+  symbol: string
+}

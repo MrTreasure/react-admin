@@ -3,6 +3,7 @@ import Chart from '@/components/Chart'
 import produce from 'immer'
 import { COLORS } from '@/config'
 import Color from 'color'
+import { IColumn } from '@/type'
 
 const options = {
   color: COLORS,
@@ -30,23 +31,23 @@ const options = {
 }
 
 interface LineChartProps {
-  columns: any[]
+  columns: IColumn[]
   rows: any[]
 }
 
 export default class LineChart extends React.Component<LineChartProps, any> {
-  private getNewOption(option: any, columns: any[], rows: any[]) {
+  private getNewOption(option: any, columns: IColumn[], rows: any[]) {
     return produce(option, opt => {
-      const xAxisKey = columns[0]
+      const xAxisKey = columns[0].key
       const keys = rows.map(item => item[xAxisKey])
       opt.xAxis.data = keys
       opt.legend.data = columns.slice(1)
-      opt.series = columns.slice(1).map((key, index) => {
+      opt.series = columns.slice(1).map((column, index) => {
         const color = Color(COLORS[index])
         return {
           type: 'line',
-          name: key,
-          data: rows.map(item => item[key]),
+          name: column.label,
+          data: rows.map(item => item[column.key]),
           areaStyle: {
             color: {
               type: 'linear',
