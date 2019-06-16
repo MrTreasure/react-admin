@@ -61,16 +61,24 @@ const options = {
   series: []
 }
 
-interface LineChartProps {
+const seriesStyle = {
+  type: 'bar',
+  barMaxWidth: 30,
+  itemStyle: {
+    barBorderRadius: [15, 15, 0, 0]
+  }
+}
+
+interface BarChartProps {
   columns: IColumn[]
   rows: any[]
   options?: any
   title?: string
 }
 
-export default class LineChart extends React.Component<LineChartProps, any> {
+export default class BarChart extends React.Component<BarChartProps, any> {
 
-  static displayName = 'LineChart'
+  static displayName = 'BarChart'
 
   @Bind()
   private getNewOption(option: any, columns: IColumn[], rows: any[]) {
@@ -84,31 +92,11 @@ export default class LineChart extends React.Component<LineChartProps, any> {
       opt.xAxis.data = keys
       opt.legend.data = columns.slice(1).map(column => column.label)
       opt.series = columns.slice(1).map((column, index) => {
-        const color = Color(COLORS[index])
-        return {
-          type: 'line',
+        // const color = Color(COLORS[index])
+        return merge(seriesStyle, {
           name: column.label,
           data: rows.map(item => item[column.key]),
-          symbol: 'none',
-          areaStyle: {
-            color: {
-              type: 'linear',
-              origin: 'start',
-              x: 0,
-              y: 0,
-              x2: 0,
-              y2: 1,
-              colorStops: [
-                {
-                  offset: 0, color: color.alpha(1).string()
-                },
-                {
-                  offset: 1, color: color.alpha(0.1).string()
-                }
-              ]
-            }
-          }
-        }
+        })
       })
     })
   }

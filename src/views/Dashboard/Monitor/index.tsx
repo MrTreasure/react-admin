@@ -1,9 +1,9 @@
 import * as React from 'react'
 import './index.scss'
 import { Row, Col } from 'antd'
-import LineChart from '@/components/LineChart'
 import { generateColumn } from '@/components/util'
 import Chance from 'chance'
+import { LineChart, BarChart} from '@/components'
 
 const chance = new Chance()
 
@@ -49,7 +49,10 @@ export default class Monitor extends React.Component<any, any> {
       <div className="monitor">
         <Row gutter={10}>
           <Col span={12}>
-            <LineChart columns={columns} rows={rows}/>
+            <LineChart columns={columns} rows={rows} title='折线图'/>
+          </Col>
+          <Col span={12}>
+            <BarChart columns={columns} rows={rows} title='柱状图'/>
           </Col>
         </Row>
       </div>
