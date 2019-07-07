@@ -6,9 +6,11 @@ import produce from 'immer'
 import { format } from 'date-fns'
 import './index.scss'
 import { isCancel, cancelMethod } from '@/utils/ajax'
+import LimitManager from '@/utils/LimitManager'
 
 const ButtonGroup = Button.Group
 const cancel = cancelMethod()
+const mgr = new LimitManager(3)
 
 interface state {
   msgList: {time: string, msg: string}[],
@@ -72,6 +74,14 @@ export default class WorkBench extends React.Component<any, state> {
     cancel()
   }
 
+  @Bind()
+  public handleLimit() {
+    for (let i = 0 ; i < 20;i++) {
+      console.log(i)
+      mgr.excute(() =>　this.handleStart())
+    }
+  }
+
   public render() {
     return <div className="work-bench">
       <Row gutter={12}>
@@ -83,6 +93,7 @@ export default class WorkBench extends React.Component<any, state> {
             </div>
             <ButtonGroup className="bt-group">
               <Button onClick={this.handleStart}>开始</Button>
+              <Button onClick={this.handleLimit}>节流</Button>
               <Button onClick={this.handleEnd}>中断</Button>
             </ButtonGroup>
           </Card>
