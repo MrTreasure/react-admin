@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { BASE_URL } from '@/config'
+import CancelManager from './CancelManager'
 
-export default axios.create({
+const ajax =  axios.create({
   withCredentials: true,
   baseURL: BASE_URL,
   headers: {
@@ -9,3 +10,10 @@ export default axios.create({
   },
   timeout: 30000
 })
+
+const mgr = CancelManager.use(ajax)
+const cancelMethod = mgr.cancelMethod
+const isCancel = axios.isCancel
+
+export { cancelMethod, isCancel }
+export default ajax
