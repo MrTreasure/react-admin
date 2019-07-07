@@ -37,7 +37,7 @@ class Main extends Component<IConfig & IDispatch> {
               onClick={this.props.toggle.bind(this, !this.props.collapsed)}
             />
           </Header>
-          <Content>
+          <Content style={{background: '#f6f7fb'}}>
             <RouterView/>
           </Content>
         </Layout>

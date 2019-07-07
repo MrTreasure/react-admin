@@ -1,4 +1,5 @@
 import { Action } from 'redux'
+import { symbol } from 'prop-types';
 
 export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>
 
@@ -20,4 +21,10 @@ export interface IColumn {
   label: string
   type: FormatType
   symbol: string
+}
+
+export interface ValProps {
+  value: number
+  type: FormatType | string
+  symbol?: string
 }
