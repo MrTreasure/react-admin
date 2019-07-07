@@ -4,10 +4,11 @@ import { CANCEL_GET } from '@/api/workbench'
 import { Bind } from 'lodash-decorators'
 import produce from 'immer'
 import { format } from 'date-fns'
-import axios from 'axios'
 import './index.scss'
+import { isCancel, cancelMethod } from '@/utils/ajax'
 
 const ButtonGroup = Button.Group
+const cancel = cancelMethod()
 
 interface state {
   msgList: {time: string, msg: string}[],
@@ -22,9 +23,6 @@ interface msg {
 const tags = [1,2,3,4,5,6,7,8]
 
 export default class WorkBench extends React.Component<any, state> {
-
-  private mgr: any = {}
-
   public state = {
     msgList: [],
     time: 5
@@ -41,7 +39,7 @@ export default class WorkBench extends React.Component<any, state> {
   @Bind()
   async handleStart() {
     try {
-      const res = await CANCEL_GET(this, this.state.time)
+      const res = await CANCEL_GET(this.state.time)
       const list: any[] = produce(this.state.msgList, (list: any[]) => {
         list.push({
           time: format(new Date(), 'HH:mm:ss'),
@@ -52,7 +50,7 @@ export default class WorkBench extends React.Component<any, state> {
         msgList: list
       })
     } catch (error) {
-      if (axios.isCancel(error)) {
+      if (isCancel(error)) {
         console.log(error)
         const list: any[] = produce(this.state.msgList, (list: any[]) => {
           list.push({
@@ -71,8 +69,7 @@ export default class WorkBench extends React.Component<any, state> {
 
   @Bind()
   public handleEnd() {
-    console.log(this.mgr)
-    this.mgr.cancel()
+    cancel()
   }
 
   public render() {
