@@ -19,7 +19,8 @@ export const MENU_LIST: IMenuItem[] = [
       },
       {
         label: '工作台',
-        value: 'workbench'
+        value: 'workbench',
+        path: '/dashboard/workbench'
       }
     ]
   },
